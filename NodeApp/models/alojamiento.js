@@ -1,5 +1,3 @@
-const db = require("../db")
-
 const getAllAlojamiento = () => {
     return new Promise((resolve, reject) => {
         db.query('select * from alojamientos', (err, rows) => {
