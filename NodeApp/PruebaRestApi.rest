@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/api/mensajes/3
+GET http://localhost:3000/api/mensajes/1
 
 ###
 

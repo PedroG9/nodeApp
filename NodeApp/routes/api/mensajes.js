@@ -4,23 +4,13 @@ const Mensaje = require('../../models/mensaje');
 
 //Recuperamos todos los mensajes
 
-router.get('/:id_receptor', (req, res) => {
-    Mensaje.getByIdReceptor(req.params.id_receptor)
+router.get('/:id', (req, res) => {
+    Mensaje.getAllMensajes(req.params.id)
         .then(rows => {
-            res.render('mensajes', { mensajes: rows })
+            res.json(rows)
         })
         .catch(err => {
-            res.render({ error: err.message })
-        })
-})
-
-router.get('/:id_emisor', (req, res) => {
-    Mensaje.getByIdEmisor(req.params.id_emisor)
-        .then(rows => {
-            res.render('mensajes', { mensajes: rows })
-        })
-        .catch(err => {
-            res.render({ error: err.message })
+            res.json({ error: err.message })
         })
 })
 

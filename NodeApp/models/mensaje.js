@@ -1,15 +1,6 @@
-const getByIdReceptor = (pMensajeId) => {
+const getAllMensajes = (pMensajeId) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from mensajes where id_receptor = ' + pMensajeId, (err, rows) => {
-            if (err) reject(err);
-            resolve(rows);
-        });
-    });
-};
-
-const getByIdEmisor = (pMensajeId) => {
-    return new Promise((resolve, reject) => {
-        db.query('select * from mensajes where id_emisor = ' + pMensajeId, (err, rows) => {
+        db.query('select * from mensajes where id_emisor = ? OR id_receptor = ?', [pMensajeId, pMensajeId], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
@@ -36,8 +27,7 @@ const deleteMensaje = (pMensajeId) => {
 };
 
 module.exports = {
-    getByIdEmisor,
-    getByIdReceptor,
+    getAllMensajes,
     createMensaje,
     deleteMensaje
 }
