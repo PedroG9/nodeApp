@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .header.text-center
+      h1 Username del receptor.
+      p Mensajes nuevos:
+  .main
+    each mensaje in mensajes
+      ul   
+          li= mensaje.id_receptor + mensaje.texto
+          li= mensaje.id_emisor + mensaje.texto
+  .footer
+    .row.mt-3
+      .col-3
+        input#inputUsuario.form-control(type="text", placeholder="Nombre usuario")
+      .col-7
+        input#inputMensaje.form-control(type="text", placeholder="Mensaje")
+      .col-2
+        button#btnEnviar.btn.btn-info.btn-block Enviar

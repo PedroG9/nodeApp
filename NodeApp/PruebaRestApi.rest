@@ -19,3 +19,18 @@ Content-Type: application/json
     "fecha_final": "2020-10-12", 
     "usuarios_id": 1
 }
+
+###
+
+GET http://localhost:3000/api/mensajes/3
+
+###
+
+POST http://localhost:3000/api/mensajes
+Content-Type: application/json
+
+{
+    "texto": "Hola Alex",
+    "id_emisor": 2,
+    "id_receptor": 1
+}
