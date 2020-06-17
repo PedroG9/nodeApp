@@ -1,1 +1,21 @@
 GET http://localhost:3000/api/alojamientos
+
+###
+
+POST http://localhost:3000/api/alojamientos
+Content-Type: application/json
+
+{
+    "ciudad": "Madrid",
+    "tipo_alojamiento": "Piso", 
+    "tipo_habitacion": "Habitación compartida", 
+    "direccion": "Calle Ancha, 123",
+    "descripcion": "descripcion", 
+    "img": "alguna", 
+    "lavanderia": 1, 
+    "cocina": 1, 
+    "baño": 1, 
+    "fecha_inicio": "2020-06-05", 
+    "fecha_final": "2020-10-12", 
+    "usuarios_id": 1
+}

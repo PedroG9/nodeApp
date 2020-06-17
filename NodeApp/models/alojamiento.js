@@ -7,10 +7,11 @@ const getAllAlojamiento = () => {
     });
 };
 
-const create = ({ ciudad, tipo_alojamiento, tipo_habitacion, direccion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuario_id }) => {
+const create = ({ ciudad, tipo_alojamiento, tipo_habitacion, direccion, descripcion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id }) => {
+    console.log('algo');
     return new Promise((resolve, reject) => {
-        db.query('insert into alojamientos (ciudad, tipo_alojamiento, tipo_habitacion, direccion, descripcion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
-        [ciudad, tipo_alojamiento, tipo_habitacion, direccion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuario_id], 
+        db.query('insert into alojamientos (ciudad, tipo_alojamiento, tipo_habitacion, direccion, descripcion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+        [ciudad, tipo_alojamiento, tipo_habitacion, direccion, descripcion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id], 
         (err, result) => {
             if (err) reject (err);
             resolve (result);
@@ -20,7 +21,7 @@ const create = ({ ciudad, tipo_alojamiento, tipo_habitacion, direccion, img, lav
 
 const getById = (pAlojamientoId) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from alojamiento where id = ?', [pAlojamientoId], (err, rows) => {
+        db.query('select * from alojamientos where id = ?', [pAlojamientoId], (err, rows) => {
             if(err) reject(err);
             if(rows.length !== 1) reject('El id no existe');
             resolve(rows[0]);
