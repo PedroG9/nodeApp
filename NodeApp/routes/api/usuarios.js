@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
 
 // Registrar usuarios
 router.post('/registro', async (req, res) => {
-    
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
     const result = await Usuario.createUser(req.body);
     if(result['affectedRows'] === 1) {
         res.json({ success: 'Registro correcto' });
@@ -48,6 +48,6 @@ function createToken(pUserId) {
         expiredAt: moment().add(15, 'minutes').unix()
     }
     return jwt.sign(payload, process.env.SECRET_KEY);
-}
+};
 
 module.exports = router;
