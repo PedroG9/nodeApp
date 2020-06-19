@@ -20,6 +20,8 @@ Content-Type: application/json
     "usuarios_id": 1
 }
 
+DELETE http://localhost:3000/api/alojamientos/
+
 ###
 
 GET http://localhost:3000/api/mensajes/1
@@ -33,4 +35,22 @@ Content-Type: application/json
     "texto": "Hola Alex",
     "id_emisor": 2,
     "id_receptor": 1
+}
+
+###
+
+GET http://localhost:3000/api/usuarios/1
+
+###
+POST http://localhost:3000/api/usuarios/registro
+Content-Type: application/json
+
+{
+    "username": "pedrog9", 
+    "password": "12345", 
+    "nombre": "Pedro", 
+    "apellidos": "Garcia",
+    "email": "pedro@gmail.com", 
+    "telefono": "616263646", 
+    "edad": 12
 }

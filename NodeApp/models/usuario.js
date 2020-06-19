@@ -25,12 +25,20 @@ const getById = (pUsuarioId) => {
     return new Promise((resolve, reject) => {
         db.query('select * from usuarios where id = ?', [pUsuarioId], (err, rows) => {
             if (err) reject(err);
-            if (rows.length !== 1) resolve(null);
-            resolve(rows[0]);
+            resolve(rows);
         })
     });
 }
 
+const getAll = () => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from usuarios', (err, rows) => {
+            if (err) reject(err)
+            resolve(rows);
+        });
+    });
+};
+
 module.exports = {
-    createUser, getByEmail, getById
+    createUser, getByEmail, getById, getAll
 }

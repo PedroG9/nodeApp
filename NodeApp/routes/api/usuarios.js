@@ -5,19 +5,19 @@ const moment = require('moment');
 
 const Usuario = require('../../models/usuario');
 
-router.get('/', async (req, res) => {
-    try {
-        const row = await Usuario.getById();
-        res.json(row);
-    } catch (err) {
+router.get('/:id', (req, res) => {
+    Usuario.getById(req.params.id)
+    .then(rows => {
+        res.json(rows);
+    })
+    .catch(err => {
         res.json({ error: err.message })
-
-    }
-})
+    })
+});
 
 // Registrar usuarios
-router.post('/', async (req, res) => {
-    res.body.password = bcrypt.hashSync(req.password, );
+router.post('/registro', async (req, res) => {
+    
     const result = await Usuario.createUser(req.body);
     if(result['affectedRows'] === 1) {
         res.json({ success: 'Registro correcto' });
