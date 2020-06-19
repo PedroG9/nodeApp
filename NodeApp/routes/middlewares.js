@@ -1,14 +1,13 @@
 const jwt = require('jsonwebtoken');
 const moment = require('mmoment');
 
-const Usuario = require ('../models/usuario');
-
 const checkToken = (req, res, next) => {
     if (!req.headers['user-token']) {
         return res.json({ error: 'Debes incluir el token dentro de la cabecera' });
     }
 
     const userToken = req.headers['user-token'];
+    console.log(userToken);
     let payload = {};
     try {
         payload = jwt.decode(token, process.env.TOKEN_KEY)
@@ -26,6 +25,7 @@ const checkToken = (req, res, next) => {
 
     next();
 };
+
 
 module.exports = {
     checkToken
