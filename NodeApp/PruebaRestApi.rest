@@ -20,7 +20,29 @@ Content-Type: application/json
     "usuarios_id": 1
 }
 
-DELETE http://localhost:3000/api/alojamientos/
+###
+
+DELETE http://localhost:3000/api/alojamientos/10
+
+###
+
+PUT http://localhost:3000/api/alojamientos/9
+Content-Type: application/json
+
+{
+    "ciudad": "Barcelona",
+    "tipo_alojamiento": "Piso", 
+    "tipo_habitacion": "Habitacion compartida", 
+    "direccion": "Avenida Diagonal, 144",
+    "descripcion": "descripcion", 
+    "img": "alguna", 
+    "lavanderia": 1, 
+    "cocina": 1, 
+    "baño": 1, 
+    "fecha_inicio": "2020-06-05", 
+    "fecha_final": "2020-10-12", 
+    "usuarios_id": 1
+}
 
 ###
 
@@ -32,10 +54,13 @@ POST http://localhost:3000/api/mensajes
 Content-Type: application/json
 
 {
-    "texto": "Hola Alex",
-    "id_emisor": 2,
-    "id_receptor": 1
+    "texto": "Hola Pedro",
+    "id_emisor": 1,
+    "id_receptor": 2
 }
+
+###
+
 
 ###
 

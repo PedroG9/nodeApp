@@ -27,7 +27,7 @@ router.post('/registro', async (req, res) => {
 });
 
 // Login usuarios
-router.post('/', async (req, res) => {
+router.post('/login', async (req, res) => {
     const usuario = await Usuario.getByEmail(req.body.email);
     if (usuario) {
         const idem = bcrypt.compareSync(req.body.password, usuario.password);

@@ -38,11 +38,11 @@ const deleteById = (pAlojamientoId) => {
     });
 };
 
-const updateById = (pAlojamientoId, { ciudad, tipo_alojamiento, tipo_habitacion, direccion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuario_id }) => {
+const updateById = (pAlojamientoId, { ciudad, tipo_alojamiento, tipo_habitacion, direccion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id }) => {
     return new Promise((resolve, reject) => {
         db.query (
-            'update alojamientos set ciudad = ?, tipo_alojamiento = ?, tipo_habitacion = ??, direccion = ?, img = ?, lavanderia = ?, cocina = ?, baño = ?, fecha_inicio = ?, fecha_final = ?, usuario_id = ?', 
-            [ciudad, tipo_alojamiento, tipo_habitacion, direccion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuario_id], 
+            'update alojamientos set ciudad = ?, tipo_alojamiento = ?, tipo_habitacion = ??, direccion = ?, img = ?, lavanderia = ?, cocina = ?, baño = ?, fecha_inicio = ?, fecha_final = ?, usuarios_id = ?', 
+            [ciudad, tipo_alojamiento, tipo_habitacion, direccion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id, pAlojamientoId], 
             (err, result) => {
                 if (err) reject(err);
                 resolve (result);

@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
-const moment = require('mmoment');
+const moment = require('moment');
+const multer = require('multer');
+const path = require('path');
 
 const checkToken = (req, res, next) => {
     if (!req.headers['user-token']) {
@@ -26,7 +28,19 @@ const checkToken = (req, res, next) => {
     next();
 };
 
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, '../public/uploads'),
+    filename: (req, file, callback) => {
+        callback(null, file.originalname);
+    }
+})
+
+const uploadImage = multer({
+    storage: storage,
+    limits: {fileSize: 1000000}
+}).single('image');
+
 
 module.exports = {
-    checkToken
+    checkToken, uploadImage
 }
