@@ -1,16 +1,16 @@
 const getAllMensajes = (pMensajeId) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from mensajes where id_emisor = ? OR id_receptor = ?', [pMensajeId, pMensajeId], (err, rows) => {
+        db.query('select * from mensajes where fk_conversacion = ?', [pMensajeId], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
     });
 };
 
-const createMensaje = ({ texto, id_emisor, id_receptor }) => {
-    console.log(texto, id_emisor, id_receptor);
+const createMensaje = ({ texto, fk_conversacion, fk_emisor }) => {
+    //console.log(texto, id_emisor, id_receptor);
     return new Promise((resolve, reject) => {
-        db.query('insert into mensajes (texto, id_emisor, id_receptor) values(?, ?, ?)', [texto, id_emisor, id_receptor], (err, result) => {
+        db.query('insert into mensajes (texto, fk_conversacion, fk_emisor) values(?, ?, ?)', [texto, fk_conversacion, fk_emisor], (err, result) => {
             if (err) reject(err);
             resolve(result);
         });

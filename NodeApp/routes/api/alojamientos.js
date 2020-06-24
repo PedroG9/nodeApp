@@ -39,7 +39,8 @@ router.delete('/:idAlojamiento', async (req, res) => {
 
 // Editar alojamiento
 router.put('/:idAlojamiento', async (req, res) => {
-    const result = await Alojamiento.updateById(req.params.idCliente, req.body);
+    const result = await Alojamiento.updateById(req.params.idAlojamiento, req.body);
+    console.log(result);
     if (result['affectedRows'] === 1) {
         res.json({ success: 'Alojamiento actualizado' });
     }else {

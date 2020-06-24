@@ -22,9 +22,9 @@ router.post('/', async (req, res) => {
 
 //Borrar un mensaje.
 router.delete('/:idMensaje', async (req, res) => {
-    const mensaje = await Mensaje.getById(req.params.idMensaje);
+    const mensaje = await Mensaje.getAllMensajes(req.params.idMensaje);
 
-    const result = await Mensaje.deleteById(req.params.idMensaje);
+    const result = await Mensaje.deleteMensaje(req.params.idMensaje);
     if (result['affectedRows'] === 1) {
         res.json({ success: 'Mensaje borrado', mensaje });
     } else {

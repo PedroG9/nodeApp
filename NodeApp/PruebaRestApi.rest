@@ -26,13 +26,13 @@ DELETE http://localhost:3000/api/alojamientos/10
 
 ###
 
-PUT http://localhost:3000/api/alojamientos/9
+PUT http://localhost:3000/api/alojamientos/11
 Content-Type: application/json
 
 {
     "ciudad": "Barcelona",
     "tipo_alojamiento": "Piso", 
-    "tipo_habitacion": "Habitacion compartida", 
+    "tipo_habitacion": "Habitacion", 
     "direccion": "Avenida Diagonal, 144",
     "descripcion": "descripcion", 
     "img": "alguna", 
@@ -55,15 +55,19 @@ Content-Type: application/json
 
 {
     "texto": "Hola Pedro",
-    "id_emisor": 1,
-    "id_receptor": 2
+    "fk_conversacion": 1,
+    "fk_emisor": 1
 }
 
 ###
 
+DELETE http://localhost:3000/api/mensajes/2
 
 ###
 
+GET http://localhost:3000/api/conversaciones/1
+
+###
 GET http://localhost:3000/api/usuarios/1
 
 ###
@@ -71,11 +75,20 @@ POST http://localhost:3000/api/usuarios/registro
 Content-Type: application/json
 
 {
-    "username": "pedrog9", 
-    "password": "12345", 
-    "nombre": "Pedro", 
-    "apellidos": "Garcia",
-    "email": "pedro@gmail.com", 
-    "telefono": "616263646", 
-    "edad": 12
+    "username": "PabloT5", 
+    "password": "123456", 
+    "nombre": "Pablo", 
+    "apellidos": "Gomez",
+    "email": "pgomezt5@gmail.com", 
+    "telefono": "616263656", 
+    "edad": 43
+}
+
+### 
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "pgomezt5@gmail.com",
+    "password": "123456"
 }

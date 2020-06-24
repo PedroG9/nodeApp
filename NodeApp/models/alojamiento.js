@@ -8,7 +8,7 @@ const getAllAlojamiento = () => {
 };
 
 const create = ({ ciudad, tipo_alojamiento, tipo_habitacion, direccion, descripcion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id }) => {
-    console.log('algo');
+    //console.log('algo');
     return new Promise((resolve, reject) => {
         db.query('insert into alojamientos (ciudad, tipo_alojamiento, tipo_habitacion, direccion, descripcion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
         [ciudad, tipo_alojamiento, tipo_habitacion, direccion, descripcion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id], 
@@ -41,14 +41,13 @@ const deleteById = (pAlojamientoId) => {
 const updateById = (pAlojamientoId, { ciudad, tipo_alojamiento, tipo_habitacion, direccion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id }) => {
     return new Promise((resolve, reject) => {
         db.query (
-            'update alojamientos set ciudad = ?, tipo_alojamiento = ?, tipo_habitacion = ??, direccion = ?, img = ?, lavanderia = ?, cocina = ?, baño = ?, fecha_inicio = ?, fecha_final = ?, usuarios_id = ?', 
+            'update alojamientos set ciudad = ?, tipo_alojamiento = ?, tipo_habitacion = ?, direccion = ?, img = ?, lavanderia = ?, cocina = ?, baño = ?, fecha_inicio = ?, fecha_final = ?, usuarios_id = ? where id = ?', 
             [ciudad, tipo_alojamiento, tipo_habitacion, direccion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id, pAlojamientoId], 
             (err, result) => {
                 if (err) reject(err);
                 resolve (result);
-            }
-        )
-    })
+            })
+    });
 }
 
 module.exports = {

@@ -30,7 +30,9 @@ router.post('/registro', async (req, res) => {
 router.post('/login', async (req, res) => {
     const usuario = await Usuario.getByEmail(req.body.email);
     if (usuario) {
+        //console.log(usuario);
         const idem = bcrypt.compareSync(req.body.password, usuario.password);
+        //console.log(idem)
         if (idem) {
             res.json({ success: 'Correct login', token: createToken(usuario.id) });
         } else {
