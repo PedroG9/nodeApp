@@ -68,6 +68,20 @@ DELETE http://localhost:3000/api/mensajes/2
 GET http://localhost:3000/api/conversaciones/1
 
 ###
+
+POST http://localhost:3000/api/conversaciones/
+Content-Type: application/json
+
+{
+    "fk_usuario1": 2,
+    "fk_usuario2": 1
+}
+
+###
+
+DELETE http://localhost:3000/api/conversaciones/2
+
+###
 GET http://localhost:3000/api/usuarios/1
 
 ###

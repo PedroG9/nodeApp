@@ -1,5 +1,7 @@
 const router = require('express').Router();
-
+const multer = require('multer');
+const upload = multer({dest: 'public/uploads'})
+const { uploadImage } = require('./middlewares');
 const Alojamiento = require('../../models/alojamiento');
 
 // Recuperar todos los alojamientos
@@ -23,6 +25,19 @@ router.post('/', async (req, res) => {
         res.json({ error: 'Alojamiento no creado' });
     }
     
+});
+
+// Imagen
+router.post('/', upload.single('imagen') , (req, res) => {
+    console.log(req.file);
+    uploadImage(req, res, (err) => {
+        if (err) {
+            err.message = 'Imagen no subida';
+            return res.send(err);
+        }
+        console.log(req.file);
+        res.send('Imagen subida');
+    });
 });
 
 // Borrar alojamiento

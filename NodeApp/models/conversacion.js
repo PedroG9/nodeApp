@@ -1,6 +1,6 @@
-const getAllConversaciones = (pConversacionId) => {
+const getAllConversaciones = (pUsuarioId) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from conversaciones where fk_usuario1 = ? or fk_usuario2 = ?', [pConversacionId, pConversacionId], (err, rows) => {
+        db.query('select * from conversaciones where fk_usuario1 = ? or fk_usuario2 = ?', [pUsuarioId, pUsuarioId], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
@@ -16,6 +16,15 @@ const createConversacion = ({ fk_usuario1, fk_usuario2 }) => {
     });
 };
 
+const getByIdConv = (pConversacionId) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from conversaciones where id = ?', [pConversacionId], (err, rows) => {
+            if(err) reject(err);
+            resolve(rows);
+        })
+    })
+}
+
 const deleteByIdConv = (pConversacionId) => {
     return new Promise((resolve, reject) => {
         db.query('delete from conversaciones where id = ?', [pConversacionId], (err, result) => {
@@ -26,5 +35,5 @@ const deleteByIdConv = (pConversacionId) => {
 };
 
 module.exports = {
-    getAllConversaciones, createConversacion, deleteByIdConv
+    getAllConversaciones, createConversacion, getByIdConv, deleteByIdConv
 }
