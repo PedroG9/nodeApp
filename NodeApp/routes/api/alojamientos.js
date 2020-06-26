@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const multer = require('multer');
+const fs = require('fs');
 const upload = multer({dest: 'public/uploads'})
-const { uploadImage } = require('./middlewares');
+const { uploadImage } = require('../middlewares');
 const Alojamiento = require('../../models/alojamiento');
 
 // Recuperar todos los alojamientos
@@ -16,7 +17,12 @@ router.get('/', (req, res) => {
 });
 
 // Crear nuevo alojamiento en la base de datos
-router.post('/', async (req, res) => {
+router.post('/', upload.single('img'), async (req, res) => {
+    //console.log(req.file);
+    fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
+    let extArray = req.file.mimetype.split("/");
+    let extension = extArray[extArray.length - 1];
+    req.body.img = req.file.filename + '.' + extension;
     const result = await Alojamiento.create(req.body);
     if(result['affectedRows'] === 1) {
         const alojamiento = await Alojamiento.getById(result['insertId']);
@@ -28,7 +34,7 @@ router.post('/', async (req, res) => {
 });
 
 // Imagen
-router.post('/', upload.single('imagen') , (req, res) => {
+/* router.post('/', upload.single('imagen') , (req, res) => {
     console.log(req.file);
     uploadImage(req, res, (err) => {
         if (err) {
@@ -38,7 +44,7 @@ router.post('/', upload.single('imagen') , (req, res) => {
         console.log(req.file);
         res.send('Imagen subida');
     });
-});
+}); */
 
 // Borrar alojamiento
 router.delete('/:idAlojamiento', async (req, res) => {

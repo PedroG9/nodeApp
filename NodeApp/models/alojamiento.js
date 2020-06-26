@@ -8,7 +8,7 @@ const getAllAlojamiento = () => {
 };
 
 const create = ({ ciudad, tipo_alojamiento, tipo_habitacion, direccion, descripcion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id }) => {
-    //console.log('algo');
+    console.log(ciudad);
     return new Promise((resolve, reject) => {
         db.query('insert into alojamientos (ciudad, tipo_alojamiento, tipo_habitacion, direccion, descripcion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
         [ciudad, tipo_alojamiento, tipo_habitacion, direccion, descripcion, img, lavanderia, cocina, baño, fecha_inicio, fecha_final, usuarios_id], 
