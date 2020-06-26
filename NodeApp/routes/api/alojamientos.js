@@ -2,7 +2,7 @@ const router = require('express').Router();
 const multer = require('multer');
 const fs = require('fs');
 const upload = multer({dest: 'public/uploads'})
-const { uploadImage } = require('../middlewares');
+//const { uploadImage } = require('../middlewares');
 const Alojamiento = require('../../models/alojamiento');
 
 // Recuperar todos los alojamientos
@@ -15,6 +15,18 @@ router.get('/', (req, res) => {
             res.json({ error: err.message })
         });
 });
+
+// Recuperar por id
+router.get('/:idAlojamiento', (req, res) => {
+    Alojamiento.getById(req.params.idAlojamiento)
+    .then(rows => {
+        res.json(rows);
+    })
+    .catch((err) => {
+        res.json({ error: err.message });
+    })
+    
+})
 
 // Crear nuevo alojamiento en la base de datos
 router.post('/', upload.single('img'), async (req, res) => {
