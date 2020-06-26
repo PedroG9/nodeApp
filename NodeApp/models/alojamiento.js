@@ -29,6 +29,15 @@ const getById = (pAlojamientoId) => {
     });
 };
 
+const getByDestino = (pCiudad) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from alojamientos where ciudad = ?', [pCiudad], (err, rows) => {
+            if(err) reject(err);
+            resolve(rows);
+        })
+    })
+}
+
 const deleteById = (pAlojamientoId) => {
     return new Promise((resolve, reject) => {
         db.query('delete from alojamientos where id = ?', [pAlojamientoId], (err, result) => {
@@ -51,5 +60,5 @@ const updateById = (pAlojamientoId, { ciudad, tipo_alojamiento, tipo_habitacion,
 }
 
 module.exports = {
-    getAllAlojamiento, create, getById, deleteById, updateById
+    getAllAlojamiento, create, getById, deleteById, updateById, getByDestino
 }

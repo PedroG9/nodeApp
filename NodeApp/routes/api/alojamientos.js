@@ -19,14 +19,24 @@ router.get('/', (req, res) => {
 // Recuperar por id
 router.get('/:idAlojamiento', (req, res) => {
     Alojamiento.getById(req.params.idAlojamiento)
-    .then(rows => {
-        res.json(rows);
-    })
-    .catch((err) => {
-        res.json({ error: err.message });
-    })
-    
-})
+        .then(rows => {
+            res.json(rows);
+        })
+        .catch((err) => {
+            res.json({ error: err.message });
+        })  
+});
+
+//Recuperar por ciudad
+router.get('/:ciudad', (req, res) => {
+    Alojamiento.getByDestino(req.params.ciudad)
+        .then(rows => {
+            res.json(rows);
+        })
+        .catch(err => {
+            res.json({ error: err.message });
+        })
+});
 
 // Crear nuevo alojamiento en la base de datos
 router.post('/', upload.single('img'), async (req, res) => {
